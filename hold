@@ -1,0 +1,51 @@
+<!--This page is when a user wants to pay off an item he loaned-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+</head>
+<body>
+    <h3>When user wants to pay off an item he/she loaned</h3>
+
+    <form action="../handlers/user_handler.php" method="post">
+        <input type="text" placeholder="user_id" name="user_id">
+        <input type="text" placeholder="amount" name="amount">
+        <input type="submit" value="Update" name="installment">
+
+    </form>
+
+ 
+    <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+        echo "id----Name.............Debit<br><br>";
+        require_once "../conn.php";
+        $sql = "SELECT * FROM users";
+        $result = mysqli_query($conn, $sql) or die ("Unsuccessful Query");
+        $row = mysqli_fetch_array($result);
+         if ($result->num_rows > 0){
+            while ($row = $result-> fetch_assoc()){
+                 $user_id = $row['id'];
+                 $full_name = $row['full_name'];
+                 $debit = $row['debit'];
+
+                 echo $user_id."____".$full_name."______________".$debit."<br>";
+  
+                 
+ 
+ 
+            
+            }
+        }
+
+    ?>
+
+    
+</body>
+</html>
